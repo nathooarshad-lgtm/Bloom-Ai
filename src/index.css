@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* Ensure touch targets are at least 44x44 pixels */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Allow zooming on mobile */
+  touch-action: pan-y;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Safe area for notched devices */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Ensure inputs are readable on all devices */
+button,
+input,
+select,
+textarea {
+  font-size: 16px; /* Prevents auto-zoom on iOS */
+  font-family: inherit;
+}
+
+input[type="time"],
+input[type="date"],
+input[type="number"] {
+  font-size: 16px;
+}
+
+/* Mobile-friendly scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure smooth transitions on mobile */
+@media (prefers-reduced-motion: no-preference) {
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Prevent double-tap zoom delay on touch devices */
+button,
+a,
+input[type="button"],
+input[type="submit"] {
+  touch-action: manipulation;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5) rotateX(-90deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+  }
+}
+
+@keyframes explode {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0) rotate(360deg);
+  }
+}
+
+@keyframes pulseCore {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(20, 184, 166, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(20, 184, 166, 0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(0.9);
+  }
+  20%, 40%, 60%, 80% {
+    transform: scale(1.1);
+  }
+  50%, 70% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes jello {
+  0%, 11.1%, 100% {
+    transform: none;
+  }
+  22.2% {
+    transform: skewX(-12.5deg) skewY(-12.5deg);
+  }
+  33.3% {
+    transform: skewX(6.25deg) skewY(6.25deg);
+  }
+  44.4% {
+    transform: skewX(-3.125deg) skewY(-3.125deg);
+  }
+  55.5% {
+    transform: skewX(1.5625deg) skewY(1.5625deg);
+  }
+  66.6% {
+    transform: skewX(-0.78125deg) skewY(-0.78125deg);
+  }
+  77.7% {
+    transform: skewX(0.390625deg) skewY(0.390625deg);
+  }
+  88.8% {
+    transform: skewX(-0.1953125deg) skewY(-0.1953125deg);
+  }
+}
+
+.fade-in-scale {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.slide-in {
+  animation: slideInFromBottom 0.3s ease-out;
+}
+
+.bounce-in {
+  animation: bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+.jello {
+  animation: jello 0.5s ease-in-out;
+}
+
+.heartbeat {
+  animation: heartbeat 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pulse-glow {
+  animation: pulseCore 0.6s ease-out;
+}
+
+.letter {
+  display: inline-block;
+  position: relative;
+}
+
+.letter-animated {
+  animation: floatDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.letter-exploding {
+  animation: explode 0.8s ease-out forwards;
+  position: absolute;
+}
+
+button {
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.15s ease-out;
+  position: relative;
+}
+
+button:active {
+  animation: jello 0.2s ease-in-out;
+  transform: scale(0.92);
+}
+
+.task-complete {
+  animation: bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), pulseCore 0.6s ease-out;
+}
+
+.habit-toggle {
+  animation: heartbeat 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Responsive typography */
+@media (max-width: 640px) {
+  /* Increase line height on small screens for readability */
+  body {
+    line-height: 1.6;
+  }
+  
+  /* Prevent text from being too small */
+  p {
+    font-size: 1rem;
+  }
+}
